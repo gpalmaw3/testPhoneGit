@@ -1,0 +1,84 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>Test SDK Disney</title>
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<style>
+img{width:100%;max-width:100%;overflow:hidden;}
+</style>
+<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+<script language="javascript">
+$(document).ready(function(){
+
+$('#button-img').click(function(){
+$('#body-canvas').slideToggle();
+});
+
+});
+
+function cargaContextoCanvas(idCanvas){
+   var elemento = document.getElementById(idCanvas);
+   if(elemento && elemento.getContext){
+      var contexto = elemento.getContext('2d');
+      if(contexto){
+         return contexto;
+      }
+   }
+   return FALSE;
+}
+
+
+window.onload = function(){
+   //Recibimos el elemento canvas
+   var ctx = cargaContextoCanvas('canvas');
+   if(ctx){
+      //Creo una imagen conun objeto Image de Javascript
+      var img = new Image();
+      //indico la URL de la imagen
+      img.src = 'img/disneygold.png';
+      //defino el evento onload del objeto imagen
+      img.onload = function(){
+         //incluyo la imagen en el canvas
+         ctx.drawImage(img, 10, 10);
+      }
+   }
+}
+
+
+</script>
+</head>
+<body style="margin:0;font-family: 'Indie Flower', cursive,Arial;overflow:hidden;">
+<div id="wrapper" style="background-image:url('img/bg.jpg');background-position:center;background-size:cover;width:100%;height:100%;max-width:100%;text-align:center;margin:0 auto;">
+<h1 style="text-shadow:1px 2px 3px #fafafa;padding-top:1em;">Test SDK Disney</h1>
+<button id="button-img">Show Image</button>
+<button onclick="playAudio()" type="button">Play Music</button>
+<button onclick="pauseAudio()" type="button">Pause Music</button>
+
+<div id="body-canvas" style="position:relative; top:3%;display:none;margin:auto;width:100%;max-width:100%;height:100%;">
+<canvas id="canvas" width="260" height="300">
+Tu navegador no soporta canvas.
+</canvas>
+</div>
+<div id="audio" style="display:none;position:absolute;bottom:0.2em;margin:auto;">
+<audio id="myAudio">
+  <source src="music/disney-music.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+</div>
+
+
+ 
+</div>
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    x.play(); 
+} 
+
+function pauseAudio() { 
+    x.pause(); 
+} 
+</script>
+</body>
+</html>
