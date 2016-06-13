@@ -1,84 +1,62 @@
 <!DOCTYPE>
 <html>
 <head>
-<title>Test SDK Disney</title>
-<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-<style>
-img{width:100%;max-width:100%;overflow:hidden;}
-</style>
-<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
-<script language="javascript">
-$(document).ready(function(){
+	<title>Test SDK Analytics</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link href='css/styles.css' rel='stylesheet' type='text/css'>
+	
+	<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+	<script src="js/functions.js"></script>
+	
+	<!-- Google Analytics -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-$('#button-img').click(function(){
-$('#body-canvas').slideToggle();
-});
+	  ga('create', 'UA-79007399-2', 'auto');
+	  /*ga('send', 'pageview');*/
+	  ga('send', 'event', '#button-img', 'click', '#button-showImage');
+	  ga('send', 'event', '#button-play-music', 'click', '#button-Play-Music');
+	  ga('send', 'event', '#button-pause-music', 'click', '#button-Pause-Music');
+	</script>
+	<!-- End Google Analytics -->
 
-});
-
-function cargaContextoCanvas(idCanvas){
-   var elemento = document.getElementById(idCanvas);
-   if(elemento && elemento.getContext){
-      var contexto = elemento.getContext('2d');
-      if(contexto){
-         return contexto;
-      }
-   }
-   return FALSE;
-}
-
-
-window.onload = function(){
-   //Recibimos el elemento canvas
-   var ctx = cargaContextoCanvas('canvas');
-   if(ctx){
-      //Creo una imagen conun objeto Image de Javascript
-      var img = new Image();
-      //indico la URL de la imagen
-      img.src = 'disneygold.png';
-      //defino el evento onload del objeto imagen
-      img.onload = function(){
-         //incluyo la imagen en el canvas
-         ctx.drawImage(img, 10, 10);
-      }
-   }
-}
-
-
-</script>
 </head>
-<body style="margin:0;font-family: 'Indie Flower', cursive,Arial;overflow:hidden;">
-<div id="wrapper" style="background-image:url('img/bg.jpg');background-position:center;background-size:cover;width:100%;height:100%;max-width:100%;text-align:center;margin:0 auto;">
-<h1 style="text-shadow:1px 2px 3px #fafafa;padding-top:1em;">Test SDK Disney</h1>
-<button id="button-img">Show Image</button>
-<button onclick="playAudio()" type="button">Play Music</button>
-<button onclick="pauseAudio()" type="button">Pause Music</button>
+<body>
 
-<div id="body-canvas" style="position:relative; top:3%;display:none;margin:auto;width:100%;max-width:100%;height:100%;">
-<canvas id="canvas" width="260" height="300">
-Tu navegador no soporta canvas.
-</canvas>
-</div>
-<div id="audio" style="display:none;position:absolute;bottom:0.2em;margin:auto;">
-<audio id="myAudio">
-  <source src="disney-music.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
-</div>
+	<div id="wrapper">
+		<h1>Test SDK Disney</h1>
+		<button id="button-img">Show Image</button>
+		<button onclick="playAudio()" type="button">Play Music</button>
+		<button onclick="pauseAudio()" type="button">Pause Music</button>
 
-
- 
-</div>
+		<div id="body-canvas">
+		<canvas id="canvas" width="260" height="300">
+		Tu navegador no soporta canvas.
+		</canvas>
+		</div>
+		<div id="audio">
+		<audio id="myAudio">
+		  <source src="music/disney-music.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+		</audio>
+		</div>
+	</div>
+	
 <script>
-var x = document.getElementById("myAudio"); 
+	var x = document.getElementById("myAudio"); 
 
-function playAudio() { 
-    x.play(); 
-} 
+	function playAudio() { 
+		x.play(); 
+	} 
 
-function pauseAudio() { 
-    x.pause(); 
-} 
+	function pauseAudio() { 
+		x.pause(); 
+	} 
 </script>
+
 </body>
 </html>
